@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
+  {path: "", component: ProductListComponent},
   {path: "add-product", component: AddProductComponent}
 ];
 
