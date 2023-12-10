@@ -1,0 +1,7 @@
+.ng-invalid.ng-touched{
+    border-color: rgb(169, 52, 52);
+    border-width: 1px;
+}
+.error-block {
+    color: red;
+}

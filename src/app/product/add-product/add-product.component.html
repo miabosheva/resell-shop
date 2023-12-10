@@ -3,18 +3,42 @@
     Add a new product
   </div>
   <div class="card-body">
-    <form>
+    <form (ngSubmit)="onSubmit()" #Form="ngForm">
+      <div class="form-group col-12">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" #propName="ngModel" ngModel name="Name" required>
+        <span *ngIf="!propName.valid && propName.touched" class="error-block">
+          Type in the title of your product.
+        </span>
+      </div>
       <div class="form-group col-12">
         <label for="type">Type</label>
-        <input type="text" class="form-control">
+        <select name="type" class="form-select" ngModel name="Type" required>
+          <option *ngFor="let enum of keys()" value="{{enum}}">
+            {{enum}}
+          </option>
+        </select>
       </div>
       <div class="form-group col-12">
         <label for="size">Size</label>
-        <input type="text" class="form-control">
+        <select name="size" class="form-select" ngModel name="Size" required>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select> 
       </div>
       <div class="form-group col-12">
-        <label for="size">Price</label>
-        <input type="text" class="form-control">
+        <label for="size">Price in Euros</label>
+        <div class="input-group">
+          <input type="number" class="form-control" ngModel name="Price" required>
+          <div class="input-group-text">€</div>
+        </div>
+      </div>
+      <div class="form-group col-12">
+        <button style="margin-top: 1rem; margin-right: 0.7rem;" [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
+        <button style="margin-top: 1rem;" type="reset" class="btn btn-primary">Cancel</button>
       </div>
     </form>
   </div>
