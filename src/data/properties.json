@@ -1,42 +1,55 @@
 [
     {
         "Id": 1,
+        "User": "miabosheva",
         "Name": "Zara Top",
         "Size": "XS",
-        "Price": 1500
+        "Price": 1500,
+        "Image": "img1"
     },
     {
       "Id": 2,
+      "User": "user1234",
       "Name": "Zara Jeans",
       "Size": "36",
-      "Price": 2500
+      "Price": 2500,
+      "Image": "img1"
     },
     {
       "Id": 3,
+      "User": "user1234",
       "Name": "Bershka Sweater",
       "Size": "L",
-      "Price": 800
+      "Price": 800,
+      "Image": "img1"
     },
     {
       "Id": 4,
+      "User": "user1234",
       "Name": "Massimo Dutti: Shoes",
       "Size": "38",
-      "Price": 3400
+      "Price": 3400,
+      "Image": "img1"
     },
     {
       "Id": 5,
+      "User": "miabosheva",
       "Name": "Loewe Tie",
       "Size": "No Size",
-      "Price": 18000
+      "Price": 18000,
+      "Image": "img1"
     },
     {
       "Id": 6,
+      "User": "user1234",
       "Name": "Dior Wallet",
       "Size": "No Size",
-      "Price": 35000
+      "Price": 35000,
+      "Image": "img1"
     },
     {
       "Id": 7,
+      "User": "user1234",
       "Name": "Nike Dunk Low",
       "Size": "41",
       "Price": 12000

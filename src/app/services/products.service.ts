@@ -11,10 +11,17 @@ export class ProductsService {
 
   constructor(private http:HttpClient) { }
 
-  getAllProducts(): Observable<IProduct[]>{
+  getAllProducts(User: string): Observable<IProduct[]>{
     return this.http.get('data/properties.json').pipe(
-        map(data => {
-          const propertiesArray: IProduct[] = Object.values(data);
+        map((data: any) => {
+          const propertiesArray: IProduct[] = [];
+          
+          Object.keys(data).forEach(id => {
+            if (data.hasOwnProperty(id) && data[id].User === User) {
+              propertiesArray.push(data[id]);
+            }
+          });
+
           return propertiesArray;
         })
     );

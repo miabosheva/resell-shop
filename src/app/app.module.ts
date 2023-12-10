@@ -11,10 +11,14 @@ import { ProductsService } from './services/products.service';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 
 const appRoutes: Routes = [
   {path: "", component: ProductListComponent},
-  {path: "add-product", component: AddProductComponent}
+  {path: "my-profile", component: ProductListComponent},
+  {path: "add-product", component: AddProductComponent},
+  {path: "product-detail/:id", component: ProductDetailComponent},
+  {path: "**", component: ProductListComponent}
 ];
 
 @NgModule({
@@ -23,7 +27,8 @@ const appRoutes: Routes = [
     AddProductComponent,
     ProductCardComponent,
     ProductListComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

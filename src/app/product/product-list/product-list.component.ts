@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductsService } from '../../services/products.service';
 import { IProduct } from './IProduct.interface';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,13 +12,16 @@ import { IProduct } from './IProduct.interface';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent implements OnInit{
-  
+  User = "user1234"
   products: Array<IProduct> = [];
   
-  constructor(private productService: ProductsService){}
+  constructor(private route: ActivatedRoute, private productService: ProductsService){}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe({
+    if (this.route.snapshot.url.toString()){
+      this.User = "miabosheva"
+    }
+    this.productService.getAllProducts(this.User).subscribe({
       next: (data) => {
         this.products = data;
         console.log(data);
