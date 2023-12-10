@@ -1,0 +1,44 @@
+[
+    {
+        "Id": 1,
+        "Name": "Zara Top",
+        "Size": "XS",
+        "Price": 1500
+    },
+    {
+      "Id": 2,
+      "Name": "Zara Jeans",
+      "Size": "36",
+      "Price": 2500
+    },
+    {
+      "Id": 3,
+      "Name": "Bershka Sweater",
+      "Size": "L",
+      "Price": 800
+    },
+    {
+      "Id": 4,
+      "Name": "Massimo Dutti: Shoes",
+      "Size": "38",
+      "Price": 3400
+    },
+    {
+      "Id": 5,
+      "Name": "Loewe Tie",
+      "Size": "No Size",
+      "Price": 18000
+    },
+    {
+      "Id": 6,
+      "Name": "Dior Wallet",
+      "Size": "No Size",
+      "Price": 35000
+    },
+    {
+      "Id": 7,
+      "Name": "Nike Dunk Low",
+      "Size": "41",
+      "Price": 12000
+    } 
+]
