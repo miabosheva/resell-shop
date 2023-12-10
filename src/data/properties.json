@@ -2,7 +2,8 @@
     {
         "Id": 1,
         "User": "miabosheva",
-        "Name": "Zara Top",
+        "Title": "Zara Top",
+        "Type": 1,
         "Size": "XS",
         "Price": 1500,
         "Image": "img1"
@@ -10,7 +11,8 @@
     {
       "Id": 2,
       "User": "user1234",
-      "Name": "Zara Jeans",
+      "Title": "Zara Jeans",
+      "Type": 2,
       "Size": "36",
       "Price": 2500,
       "Image": "img1"
@@ -18,7 +20,8 @@
     {
       "Id": 3,
       "User": "user1234",
-      "Name": "Bershka Sweater",
+      "Title": "Bershka Sweater",
+      "Type": 1,
       "Size": "L",
       "Price": 800,
       "Image": "img1"
@@ -26,7 +29,8 @@
     {
       "Id": 4,
       "User": "user1234",
-      "Name": "Massimo Dutti: Shoes",
+      "Title": "Massimo Dutti: Shoes",
+      "Type": 0,
       "Size": "38",
       "Price": 3400,
       "Image": "img1"
@@ -34,7 +38,8 @@
     {
       "Id": 5,
       "User": "miabosheva",
-      "Name": "Loewe Tie",
+      "Title": "Loewe Tie",
+      "Type": 4,
       "Size": "No Size",
       "Price": 18000,
       "Image": "img1"
@@ -42,7 +47,8 @@
     {
       "Id": 6,
       "User": "user1234",
-      "Name": "Dior Wallet",
+      "Title": "Dior Wallet",
+      "Type": 4,
       "Size": "No Size",
       "Price": 35000,
       "Image": "img1"
@@ -50,7 +56,8 @@
     {
       "Id": 7,
       "User": "user1234",
-      "Name": "Nike Dunk Low",
+      "Title": "Nike Dunk Low",
+      "Type": 0,
       "Size": "41",
       "Price": 12000
     } 

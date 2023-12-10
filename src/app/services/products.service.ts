@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { IProduct } from '../product/product-list/IProduct.interface';
 import { Observable } from 'rxjs';
+import { ProductType } from '../product/product-list/ProductType';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class ProductsService {
           
           Object.keys(data).forEach(id => {
             if (data.hasOwnProperty(id) && data[id].User === User) {
+              data[id].Type = ProductType[data[id].Type]
               propertiesArray.push(data[id]);
             }
           });
