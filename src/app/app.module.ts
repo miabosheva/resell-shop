@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,12 +13,16 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserRegisterComponent } from './user/user-register/user-register.component';
 
 const appRoutes: Routes = [
   {path: "", component: ProductListComponent},
   {path: "my-profile", component: ProductListComponent},
   {path: "add-product", component: AddProductComponent},
   {path: "product-detail/:id", component: ProductDetailComponent},
+  {path: "user/login", component: UserLoginComponent},
+  {path: "user/register", component: UserRegisterComponent},
   {path: "**", component: ProductListComponent}
 ];
 
@@ -29,14 +33,17 @@ const appRoutes: Routes = [
     ProductCardComponent,
     ProductListComponent,
     NavBarComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [
     ProductsService
