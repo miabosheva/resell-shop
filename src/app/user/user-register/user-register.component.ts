@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators,  ValidationErrors, ValidatorFn, Abs
 import { UserServiceService } from '../../services/user-service.service';
 import { User } from '../../model/user';
 import * as alertify from 'alertifyjs';
+import { AlertifyService } from '../../services/alertify.service';
 
 @Component({
   selector: 'app-user-register',
@@ -15,7 +16,9 @@ export class UserRegisterComponent implements OnInit {
   user : User | undefined;
   userSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService) {
+  constructor(private fb: FormBuilder, 
+              private userService: UserServiceService, 
+              private alertify: AlertifyService) {
     this.registerationForm = this.fb.group({
       userName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -73,9 +76,9 @@ export class UserRegisterComponent implements OnInit {
       this.userService.addUser(this.userData());
       this.registerationForm.reset();
       this.userSubmitted = false;
-      alertify.success('User succesfully registered!');
+      this.alertify.success('User succesfully registered!');
     } else {
-      alertify.error('Please type in the required fields.');
+      this.alertify.error('Please type in the required fields.');
     }
   }
 }
