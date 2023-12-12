@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators,  ValidationErrors, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
+import { UserServiceService } from '../../services/user-service.service';
+import { User } from '../../model/user';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-user-register',
@@ -9,14 +12,16 @@ import { FormGroup, FormControl, Validators,  ValidationErrors, ValidatorFn, Abs
 export class UserRegisterComponent implements OnInit {
   
   registerationForm: FormGroup;
+  user : User | undefined;
+  userSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserServiceService) {
     this.registerationForm = this.fb.group({
-      userName: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl(null, [Validators.required]),
-      phoneNumber: new FormControl(null, [Validators.required, Validators.maxLength(10)])
+      userName: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: [null, [Validators.required]],
+      phoneNumber: [null, [Validators.required, Validators.maxLength(10)]]
     }, { validators: this.passwordMatchingValidator })
   }
 
@@ -51,7 +56,26 @@ export class UserRegisterComponent implements OnInit {
   }
   // ------------------------
 
+  userData(): User {
+    return this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      phoneNumber: this.phoneNumber.value
+    }
+  }
+
   onSubmit() {
-    console.log(this.registerationForm);
+    this.userSubmitted = true;
+    if (this.registerationForm.valid){
+      // console.log(this.registerationForm);
+      this.user = Object.assign({}, this.registerationForm.value);
+      this.userService.addUser(this.userData());
+      this.registerationForm.reset();
+      this.userSubmitted = false;
+      alertify.success('User succesfully registered!');
+    } else {
+      alertify.error('Please type in the required fields.');
+    }
   }
 }

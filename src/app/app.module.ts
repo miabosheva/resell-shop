@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { UserServiceService } from './services/user-service.service';
 
 const appRoutes: Routes = [
   {path: "", component: ProductListComponent},
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    UserServiceService
   ],
   bootstrap: [AppComponent]
 })
