@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,6 +6,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
+  
+  constructor() {}
 
+  ngOnInit(): void {
+  }
+
+  loggedIn(){
+    return localStorage.getItem('token');
+  }
+
+  onLogout(){
+    localStorage.removeItem('token');
+  }
 }
