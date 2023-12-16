@@ -7,14 +7,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent implements OnInit {
-  
+  loggedInUser: any | undefined;
+
   constructor() {}
 
   ngOnInit(): void {
   }
 
-  loggedIn(){
-    return localStorage.getItem('token');
+  loggedIn(){;
+    this.loggedInUser = localStorage.getItem('token'); 
+    // return localStorage.getItem('token');
+    return this.loggedInUser;
   }
 
   onLogout(){
