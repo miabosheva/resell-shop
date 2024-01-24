@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { IProduct } from '../product/product-list/IProduct.interface';
 import { Observable } from 'rxjs';
 import { ProductType } from '../product/product-list/ProductType';
+import { ProductConditionType } from '../product/product-list/ProductConditionType';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class ProductsService {
           Object.keys(data).forEach(id => {
             if (data.hasOwnProperty(id) && data[id].User === User) {
               data[id].Type = ProductType[data[id].Type]
+              data[id].Condition = ProductConditionType[data[id].Condition]
               propertiesArray.push(data[id]);
             }
           });

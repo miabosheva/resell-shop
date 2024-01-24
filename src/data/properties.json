@@ -6,6 +6,7 @@
         "Type": 1,
         "Size": "XS",
         "Price": 1500,
+        "Condition": 0,
         "Image": "img1"
     },
     {
@@ -15,6 +16,7 @@
       "Type": 2,
       "Size": "36",
       "Price": 2500,
+      "Condition": 0,
       "Image": "img1"
     },
     {
@@ -24,6 +26,7 @@
       "Type": 1,
       "Size": "L",
       "Price": 800,
+      "Condition": 0,
       "Image": "img1"
     },
     {
@@ -33,6 +36,7 @@
       "Type": 0,
       "Size": "38",
       "Price": 3400,
+      "Condition": 1,
       "Image": "img1"
     },
     {
@@ -40,8 +44,9 @@
       "User": "miabosheva",
       "Title": "Loewe Tie",
       "Type": 4,
-      "Size": "No Size",
+      "Size": "One Size Fits All",
       "Price": 18000,
+      "Condition": 1,
       "Image": "img1"
     },
     {
@@ -49,8 +54,9 @@
       "User": "user1234",
       "Title": "Dior Wallet",
       "Type": 4,
-      "Size": "No Size",
+      "Size": "One Size Fits All",
       "Price": 35000,
+      "Condition": 1,
       "Image": "img1"
     },
     {
@@ -59,6 +65,7 @@
       "Title": "Nike Dunk Low",
       "Type": 0,
       "Size": "41",
+      "Condition": 1,
       "Price": 12000
     } 
 ]

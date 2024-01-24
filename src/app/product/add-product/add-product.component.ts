@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductType } from '../product-list/ProductType';
 import { NgForm } from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { IProduct } from '../product-list/IProduct.interface';
+import { ProductConditionType } from '../product-list/ProductConditionType';
 
 @Component({
   selector: 'app-add-product',
@@ -12,9 +14,20 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 export class AddProductComponent implements OnInit {
   @ViewChild('Form') addProductForm: NgForm | undefined;
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
-
+  
   public ProductType = ProductType;
+
   constructor(private router: Router) { }
+
+  productView: IProduct = { 
+    Id: -1,
+    User: '',
+    Title: '',
+    Type: ProductType.SHOE,
+    Size: '',
+    Condition: ProductConditionType.NEW,
+    Price: 0,
+  };
 
   ngOnInit() {
   }
