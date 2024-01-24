@@ -6,33 +6,49 @@
     <form (ngSubmit)="onSubmit()" #Form="ngForm">
       <div>
         <tabset #staticTabs>
-          <tab class="p-4" heading="Basic Info">
-            <div class="form-group col-12">
+          <tab class="p-3" heading="Basic Info">
+            
+            <div class="form-group col-12 mt-2">
+              
               <label for="title">Title</label>
-              <input type="text" class="form-control" #prodName="ngModel" ngModel name="Name" 
-              minlength="3" required>
-              <span *ngIf="!prodName.valid && prodName.touched" class="error-block">
-                <span *ngIf="prodName.errors!['required']">Type in the title of your product.</span>
-                <span *ngIf="prodName.errors!['minlength']">Title should be at least 3 characters long.</span>
-              </span>
+              
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" #prodName="ngModel" ngModel name="Name" 
+                minlength="3" required>
+                <span *ngIf="!prodName.valid && prodName.touched" class="error-block">
+                  <span *ngIf="prodName.errors!['required']">Type in the title of your product.</span>
+                  <span *ngIf="prodName.errors!['minlength']">Title should be at least 3 characters long.</span>
+                </span>
+              </div>
             </div>
-            <div class="form-group col-12">
+            
+            <div class="form-group col-12 mt-2">
+              
               <label for="type">Type</label>
-              <select name="type" class="form-select" ngModel name="Type" required>
-                <option *ngFor="let enum of keys()" value="{{enum}}">
-                  {{enum}}
-                </option>
-              </select>
+              
+              <div class="input-group mt-2">
+                <select name="type" class="form-select" ngModel name="Type" required>
+                  <option *ngFor="let enum of keys()" value="{{enum}}">
+                    {{enum}}
+                  </option>
+                </select>
+              </div>
+
             </div>
-            <div class="form-group col-12">
+
+            <div class="form-group col-12 mt-2">
+              
               <label for="size">Size</label>
-              <select name="size" class="form-select" ngModel name="Size" required>
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-              </select> 
+              <div class="input-group mt-2">
+                <select name="size" class="form-select" ngModel name="Size" required>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select> 
+              </div>
+
             </div>
             <br/>
             <label>Condition of your product:</label>
@@ -45,25 +61,24 @@
               (click)="selectTab(1)">Next</button>
             </div>
           </tab>
-          <tab heading="Pricing and Payment Methods" class="p-2">
-            <div class="form-group col-12 mb-3 mt-3">
+
+          <tab heading="Pricing and Payment Methods" class="p-3">
+            <div class="form-group col-12">
               <label>How do you want to sell your product?</label>
               <div class="btn-group col-12 mb-2 mt-2" btnRadioGroup>  
                 <label class="btn btn-outline-primary" btnRadio=1 role="button" name="payment">Sell Now</label>
                 <label class="btn btn-outline-primary" btnRadio=2 role="button" name="payment">Auction</label>
               </div>
             </div>
-            <div class="form-group col-12">
-              <label for="price">Price in Euros</label>
-              <br/>
-              <i class="comment">Starting price for Auctioning, or final price for selling.</i>
-              <div class="input-group">
+            <div class="form-group col-12 mb-3 mt-2">
+              <label for="price">Price in Euros </label><i class="comment"> (Starting price for Auctioning, or final price for selling)</i>
+              <div class="input-group mt-2">
                 <input type="number" class="form-control" ngModel name="Price" required>
                 <div class="input-group-text">€</div>
               </div>
             </div>
-            <div class="form-group col-12 mb-3 mt-3">
-              <label>Accepted Payment Method
+            <div class="form-group col-12 mb-2 mt-2">
+              <label>Accepted Payment Methods
                 <br/>
                 <i class="comment">Card payments coming soon...</i>
                 <br>
@@ -77,9 +92,9 @@
                 </div>
               </label>
             </div>
-            <div class="form-group col-12 mb-3">
+            <div class="form-group col-12 mb-2">
               <label for="city">City, Country</label>
-              <input type="text" class="form-control" #prodCity="ngModel" ngModel name="City" 
+              <input type="text" class="form-control mt-2" #prodCity="ngModel" ngModel name="City" 
               minlength="3" required>
               <span *ngIf="!prodCity.valid && prodCity.touched" class="error-block">
                 <span *ngIf="prodCity.errors!['required']">Type in your city.</span>
@@ -93,7 +108,8 @@
               (click)="selectTab(2)">Next</button>
             </div>
           </tab>
-          <tab heading="Upload Photos">
+
+          <tab class="p-3" heading="Upload Photos">
             <div class="form-group col-12">
               <div class="photo-control">
                 <button class="m-2" type="button">Upload</button>
@@ -103,7 +119,7 @@
             </div>
             <div class="btn-group col-12">
               <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
-              (click)="selectTab(0)">Back</button>
+              (click)="selectTab(1)">Back</button>
               <button style="margin-top: 1rem;" [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
             </div>
           </tab>
