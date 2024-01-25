@@ -80,13 +80,13 @@
               </tab>
 
               <tab heading="Pricing and Payment Methods" class="p-3">
-                <div class="form-group col-12">
+                <!-- <div class="form-group col-12">
                   <label>How do you want to sell your product?</label>
                   <div class="btn-group col-12 mb-2 mt-2" btnRadioGroup>  
                     <label class="btn btn-outline-primary" btnRadio=1 role="button" name="payment">Sell Now</label>
                     <label class="btn btn-outline-primary" btnRadio=2 role="button" name="payment">Auction</label>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="price">Price in Euros </label><i class="comment"> (Starting price for Auctioning, or final price for selling)</i>
                   <div class="input-group mt-2">
@@ -109,7 +109,7 @@
                     </div>
                   </label>
                 </div>
-                <div class="form-group col-12 mb-2">
+                <!-- <div class="form-group col-12 mb-2">
                   <label for="city">City, Country</label>
                   <input type="text" class="form-control mt-2" #prodCity="ngModel" ngModel name="City" 
                   minlength="3" required>
@@ -117,7 +117,7 @@
                     <span *ngIf="prodCity.errors!['required']">Type in your city.</span>
                     <span *ngIf="prodCity.errors!['minlength']">City name should be at least 3 characters long.</span>
                   </span>
-                </div>
+                </div> -->
                 <div class="btn-group col-12">
                   <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
                   (click)="selectTab(0)">Back</button>
