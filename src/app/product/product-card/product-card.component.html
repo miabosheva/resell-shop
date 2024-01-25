@@ -3,17 +3,24 @@
     <div class="card-img-wrapper">
       <img *ngIf="product.Image" src="..\assets\images\{{product.Image}}.jpg" class="card-img-top">
       <img *ngIf="!product.Image" src="..\assets\images\placeholder.jpg" class="card-img-top">
-      <!-- <ul class="card-img-overlay favorite-button list-inline text-xxl-center animate">
+      <ul *ngIf="!hideIcons" class="card-img-overlay favorite-button list-inline text-xxl-center animate">
         <li class="list-inline-item">
           <button class="btn btn-primary favorite-btn" routerLink="/"><i class="fa-regular fa-heart fa-shake" style="color: #ffffff; font-size: 25px;"></i></button>
         </li>
-      </ul> -->
+      </ul>
     </div>
     <div class="card-body">
       <h2 class="text-center">{{product.Title}}</h2>
-      <h5 class="card-title text-center">Price: {{product.Price}} €</h5>
-      <p class="card-text">Size: {{product.Size}}</p>
-      <p class="card-text">Condition: {{product.Condition}}</p>
-      <p>{{product.Type}}</p>
+      <h5 class="card-title text-center">Price: <span *ngIf="product.Price > 0">{{product.Price}} €</span><span *ngIf="product.Price <= 0">Not specified</span></h5>
+      <p class="card-text text-center"></p>
+      <span> 
+        <div class="card-text text-center">
+          <h6 style="font-weight: 100;">
+            <span *ngIf="!product.Type">None</span><span *ngIf="product.Type">{{product.Type}}</span> | 
+            <span *ngIf="product.Condition == 0">None</span><span *ngIf="product.Condition != 0">{{product.Condition}}</span> |
+            SIZE: <span *ngIf="!product.Size">None</span><span *ngIf="product.Size">{{product.Size}}</span>
+          </h6>
+        </div>
+      </span>
     </div>
   </div>

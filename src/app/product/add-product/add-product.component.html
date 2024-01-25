@@ -1,6 +1,6 @@
 <div class="row mb-5">
   <div class="col-8">
-    <div class="card">
+    <div class="card shadow-lg p-0 bg-white">
       <div class="card-header">
         <h3>List your product</h3>
       </div>
@@ -42,8 +42,8 @@
                 <!-- Size -->
                 <div class="form-group col-12 mt-2">
                   <label for="size" class="mb-2">Select your Size</label>
-                  <div>
-                    <tabset #sizingTabs>
+                  <div class="tab-panel">
+                    <tabset class="member-tabset" #sizingTabs>
                       <tab heading="Universal Sizes">
                         <div class="input-group mt-2">
                           <select name="size" class="form-select" ngModel name="Size" [(ngModel)]="productView.Size">
@@ -73,6 +73,60 @@
                   <label class="btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="condition">Pre-Loved</label>
                 </div>
 
+                <!-- Year -->
+                <div class="form-group col-12 mb-3 mt-2">
+                  <label for="year">Year</label> <i class="comment"> (Manufacture year)</i>
+                  <div class="input-group mt-2">
+                    <input type="number" class="form-control" #prodYear="ngModel" ngModel name="Year" [(ngModel)]="productView.Year">
+                  </div>
+                  <span *ngIf="prodYear.value <= 1900" class="error-block">
+                    <span>Please input a valid year.</span>
+                  </span>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group col-12 mt-2">
+                  
+                  <label for="title">Description</label>
+                  
+                  <div class="input-group mt-2">
+                    <input type="text" class="form-control" #prodDesc="ngModel" ngModel name="Description" 
+                    minlength="10" 
+                    [(ngModel)]="productView.Description"
+                    required>
+                  </div>
+                  <span *ngIf="!prodDesc.valid && prodDesc.touched" class="error-block">
+                    <span *ngIf="prodDesc.errors!['required']">Please type in a description for your product.</span>
+                    <span *ngIf="prodDesc.errors!['minlength']">The description should be at least 10 characters long.</span>
+                  </span>
+                </div>
+
+                <!-- City -->
+                <div class="form-group col-12 mt-2">
+                  
+                  <label for="title">City</label>
+                  
+                  <div class="input-group mt-2">
+                    <select name="city" class="form-select" #prodCity="ngModel" ngModel name="City" [(ngModel)]="productView.City">
+                      <option value="Skopje">Skopje</option>
+                      <option value="Gostivar">Gostivar</option>
+                      <option value="Bitola">Bitola</option>
+                      <option value="Kumanovo">Kumanovo</option>
+                      <option value="Debar">Debar</option>
+                      <option value="Kicevo">Kicevo</option>
+                      <option value="Ohrid">Ohird</option>
+                      <option value="Struga">Struga</option>
+                      <option value="Tetovo">Tetovo</option>
+                      <option value="Veles">Veles</option>
+                      <option value="Kavadarci">Kavadarci</option>
+                      <option value="Negotino">Negotino</option>
+                    </select> 
+                  </div>
+                  <span *ngIf="!prodCity.valid && prodCity.touched" class="error-block">
+                    <span *ngIf="prodCity.errors!['required']">Please select what city you're from.</span>
+                  </span>
+                </div>
+
                 <div class="btn-group col-12">
                   <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary" 
                   (click)="selectTab(1)">Next</button>
@@ -84,9 +138,12 @@
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="price">Price in Euros </label><i class="comment"> (Starting price for Auctioning, or final price for selling)</i>
                   <div class="input-group mt-2">
-                    <input type="number" class="form-control" ngModel name="Price" [(ngModel)]="productView.Price" requiredrequired>
+                    <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" [(ngModel)]="productView.Price">
                     <div class="input-group-text">€</div>
                   </div>
+                  <span *ngIf="prodPrice.value <= 0" class="error-block">
+                    <span>Please input a valid price for your product.</span>
+                  </span>
                 </div>
                 <!-- Payment Methods -->
                 <div class="form-group col-12 mb-2 mt-2">
@@ -139,9 +196,9 @@
     <div class="card-header">
       <h3>Preview</h3>
     </div>
-    <div class="card-body">
-      <div class="shadow-lg">
-        <app-product-card [product]="productView"></app-product-card>
+    <div>
+      <div class="shadow-lg p3 bg-white">
+        <app-product-card [product]="productView" [hideIcons]="true"></app-product-card>
       </div>
     </div>
     

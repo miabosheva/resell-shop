@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { IProduct } from '../product/product-list/IProduct.interface';
 import { Observable } from 'rxjs';
 import { ProductType } from '../product/product-list/ProductType';
 import { ProductConditionType } from '../product/product-list/ProductConditionType';
+import { IProduct } from '../model/iproduct';
 
 @Injectable({
   providedIn: 'root'

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ProductType } from '../product-list/ProductType';
 import { NgForm } from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { IProduct } from '../product-list/IProduct.interface';
 import { ProductConditionType } from '../product-list/ProductConditionType';
+import { IProduct } from '../../model/iproduct';
 
 @Component({
   selector: 'app-add-product',
@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  productView: IProduct = { 
+  productView: IProduct = {
     Id: -1,
     User: '',
     Title: '',
@@ -27,6 +27,9 @@ export class AddProductComponent implements OnInit {
     Size: '',
     Condition: ProductConditionType.NEW,
     Price: 0,
+    Year: 0,
+    City: '',
+    Description: ''
   };
 
   ngOnInit() {

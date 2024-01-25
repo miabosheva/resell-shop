@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { IProduct } from '../product-list/IProduct.interface';
+import { IProductBase } from '../../model/iproductbase';
 
 @Component({
   selector: 'app-product-card',
@@ -9,5 +9,7 @@ import { IProduct } from '../product-list/IProduct.interface';
 
 export class ProductCardComponent {
   @Input()
-  product!: IProduct; 
+  product!: IProductBase; 
+
+  @Input() hideIcons!: boolean;
 }

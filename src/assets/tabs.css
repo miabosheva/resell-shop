@@ -2,8 +2,10 @@
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 4px;
-    min-height: 600px;
     background-color: white;
+}
+.nav-tabs {
+    height: 35px;
 }
 
 .nav-tabs > li.open, .member-tabset > .nav-tabs > li:hover {
@@ -24,9 +26,14 @@
     margin-top: 0px;
 }
 
+.member-tabset > .nav-tabs > li > a {
+    color: #7c7c7c;
+}
+
 .member-tabset > .nav-tabs > li.active > a {
     border: 0 !important;
     color: #333333;
+    font-weight: 500;
 }
 
 .member-tabset > .nav-tabs > li.active > a > i {

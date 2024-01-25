@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductsService } from '../../services/products.service';
-import { IProduct } from './IProduct.interface';
 import { ActivatedRoute } from '@angular/router';
+import { IProduct } from '../../model/iproduct';
 
 
 @Component({
