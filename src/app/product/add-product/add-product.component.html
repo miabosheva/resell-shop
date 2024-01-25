@@ -8,7 +8,7 @@
         <form (ngSubmit)="onSubmit()" #Form="ngForm">
           <div class="tab-panel">
             <tabset class="member-tabset" #staticTabs>
-              <tab class="p-3" heading="Basic Info">
+              <tab class="p-3" heading="Basic Info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
                 <!-- Title -->
                 <div class="form-group col-12 mt-2">
                   
@@ -31,12 +31,15 @@
                   <label for="type">Type</label>
                   
                   <div class="input-group mt-2">
-                    <select name="type" class="form-select" ngModel name="Type" [(ngModel)]="productView.Type" required>
+                    <select name="type" class="form-select" ngModel name="Type" #prodType="ngModel" [(ngModel)]="productView.Type" required>
                       <option *ngFor="let enum of keys()" value="{{enum}}">
                         {{enum}}
                       </option>
                     </select>
                   </div>
+                  <span *ngIf="prodType.touched" class="error-block">
+                    <span *ngIf="prodType.value == '0'">Please select a type.</span>
+                  </span>
 
                 </div>
                 <!-- Size -->
@@ -46,7 +49,7 @@
                     <tabset class="member-tabset" #sizingTabs>
                       <tab heading="Universal Sizes">
                         <div class="input-group mt-2">
-                          <select name="size" class="form-select" ngModel name="Size" [(ngModel)]="productView.Size">
+                          <select name="size" class="form-select" ngModel name="Size" #prodSize="ngModel" [(ngModel)]="productView.Size">
                             <option value="One Size Fits All">One Size Fits All</option>
                             <option value="XS">XS</option>
                             <option value="S">S</option>
@@ -55,56 +58,62 @@
                             <option value="XL">XL</option>
                           </select> 
                         </div>
+                        <span *ngIf="prodSize.touched" class="error-block">
+                          <span *ngIf="!prodSize.value">{{prodSize.value}}Please select a size.</span>
+                        </span>
                       </tab>
                       <tab heading="EU Sizes">
                         <div class="input-group mt-2">
-                          <input type="number" class="form-control" ngModel name="Size" [(ngModel)]="productView.Size">
+                          <input type="number" class="form-control" ngModel name="Size" #prodSize="ngModel" [(ngModel)]="productView.Size">
                         </div>
+                        <span *ngIf="prodSize.touched" class="error-block">
+                          <span *ngIf="!prodSize.value">{{prodSize.value}}Please select a size.</span>
+                        </span>
                       </tab>
                     </tabset>
                   </div>
                 </div>
+                
                 <br/>
 
                 <!-- Condition -->
                 <label>Condition of your product:</label>
-                <div class="btn-group col-12 mb-2 mt-2" ngModel name="condition" required [(ngModel)]="productView.Condition" btnRadioGroup>  
-                  <label class="btn btn-outline-primary" btnRadio="NEW" role="button" name="condition" aria-selected="true">New</label>
-                  <label class="btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="condition">Pre-Loved</label>
+                <div class="btn-group col-12 mb-2 mt-2" ngModel name="Condition" required [(ngModel)]="productView.Condition" btnRadioGroup>  
+                  <label class="btn btn-outline-primary" btnRadio="NEW" role="button" name="Condition" aria-selected="true">New</label>
+                  <label class="btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="Condition">Pre-Loved</label>
                 </div>
 
-                <!-- Year -->
+                <!-- Year not required-->
                 <div class="form-group col-12 mb-3 mt-2">
-                  <label for="year">Year</label> <i class="comment"> (Manufacture year)</i>
+                  <label for="year">Year</label> <i class="comment"> (Optional, year of manufacture)</i>
                   <div class="input-group mt-2">
                     <input type="number" class="form-control" #prodYear="ngModel" ngModel name="Year" [(ngModel)]="productView.Year">
                   </div>
-                  <span *ngIf="prodYear.value <= 1900" class="error-block">
-                    <span>Please input a valid year.</span>
-                  </span>
+                  <!-- <span *ngIf="prodYear.touched" class="error-block">
+                    <span *ngIf="prodYear.value <= 1900">Please input a valid year.</span>
+                  </span> -->
                 </div>
 
-                <!-- Description -->
+                <!-- Description not required -->
                 <div class="form-group col-12 mt-2">
                   
-                  <label for="title">Description</label>
+                  <label for="title">Description</label> <i class="comment"> (Optional)</i>
                   
                   <div class="input-group mt-2">
                     <input type="text" class="form-control" #prodDesc="ngModel" ngModel name="Description" 
                     minlength="10" 
-                    [(ngModel)]="productView.Description"
-                    required>
+                    [(ngModel)]="productView.Description">
                   </div>
-                  <span *ngIf="!prodDesc.valid && prodDesc.touched" class="error-block">
+                  <!-- <span *ngIf="!prodDesc.valid && prodDesc.touched" class="error-block">
                     <span *ngIf="prodDesc.errors!['required']">Please type in a description for your product.</span>
                     <span *ngIf="prodDesc.errors!['minlength']">The description should be at least 10 characters long.</span>
-                  </span>
+                  </span> -->
                 </div>
 
-                <!-- City -->
+                <!-- City not required-->
                 <div class="form-group col-12 mt-2">
                   
-                  <label for="title">City</label>
+                  <label for="title">City</label>  <i class="comment"> (Optional)</i>
                   
                   <div class="input-group mt-2">
                     <select name="city" class="form-select" #prodCity="ngModel" ngModel name="City" [(ngModel)]="productView.City">
@@ -122,27 +131,27 @@
                       <option value="Negotino">Negotino</option>
                     </select> 
                   </div>
-                  <span *ngIf="!prodCity.valid && prodCity.touched" class="error-block">
-                    <span *ngIf="prodCity.errors!['required']">Please select what city you're from.</span>
-                  </span>
+                  <!-- <span *ngIf="prodCity.touched" class="error-block">
+                    <span *ngIf="prodCity.value == 0">Please select what city you're from.</span>
+                  </span> -->
                 </div>
 
                 <div class="btn-group col-12">
-                  <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary" 
-                  (click)="selectTab(1)">Next</button>
+                  <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary"
+                  (click)="selectTab(1)" [disabled]="!BasicInfo.valid">Next</button>
                 </div>
               </tab>
 
-              <tab heading="Pricing and Payment Methods" class="p-3">
+              <tab heading="Pricing and Payment Methods" class="p-3" ngModelGroup="PaymentInfo" #PaymentInfo="ngModelGroup">
                 <!-- Price -->
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="price">Price in Euros </label><i class="comment"> (Starting price for Auctioning, or final price for selling)</i>
                   <div class="input-group mt-2">
-                    <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" [(ngModel)]="productView.Price">
+                    <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" [(ngModel)]="productView.Price" required>
                     <div class="input-group-text">€</div>
                   </div>
-                  <span *ngIf="prodPrice.value <= 0" class="error-block">
-                    <span>Please input a valid price for your product.</span>
+                  <span *ngIf="prodPrice.touched" class="error-block">
+                    <span *ngIf="prodPrice.value <= 0">Please input a valid price for your product.</span>
                   </span>
                 </div>
                 <!-- Payment Methods -->
@@ -166,7 +175,7 @@
                   <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
                   (click)="selectTab(0)">Back</button>
                   <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary" 
-                  (click)="selectTab(2)">Next</button>
+                  (click)="selectTab(2)" [disabled]="!PaymentInfo.valid || prodPrice.value <= 0">Next</button>
                 </div>
               </tab>
 

@@ -9,7 +9,7 @@ export interface IProductBase{
     Size: string;
     Price: number;
     Condition: ProductConditionType;
-    Year: number;
-    City: string;
+    Year?: number;
+    City?: string;
     Image?: string;
 }
