@@ -2,6 +2,19 @@
     min-height: 400px;
 }
 
+.card-body h2{
+    font-family: perpetua;
+    color: black;
+}
+
+.card-body h5 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.card-body h6 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .card:hover img{
     transform: scale(1.1,1.1);
     transition-duration: 500ms;

@@ -11,7 +11,6 @@
     </div>
     <div class="card-body">
       <h2 class="text-center">{{product.Title}}</h2>
-      <h5 class="card-title text-center">Price: <span *ngIf="product.Price > 0">{{product.Price}} €</span><span *ngIf="product.Price <= 0">Not specified</span></h5>
       <p class="card-text text-center"></p>
       <span> 
         <div class="card-text text-center">
@@ -22,5 +21,6 @@
           </h6>
         </div>
       </span>
+      <h5 class="card-title text-center"><span *ngIf="product.Price > 0">{{product.Price}} €</span><span *ngIf="product.Price <= 0">Not specified</span></h5>
     </div>
   </div>

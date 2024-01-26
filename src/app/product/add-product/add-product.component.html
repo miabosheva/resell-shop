@@ -5,25 +5,24 @@
         <h3>List your product</h3>
       </div>
       <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #Form="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addProductForm">
           <div class="tab-panel">
             <tabset class="member-tabset" #staticTabs>
-              <tab class="p-3" heading="Basic Info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
+              <tab class="p-3" heading="Basic Info" formGroupName="BasicInfo">
                 <!-- Title -->
                 <div class="form-group col-12 mt-2">
                   
                   <label for="title">Title</label>
                   
                   <div class="input-group mt-2">
-                    <input type="text" class="form-control" #prodName="ngModel" ngModel name="Name" 
+                    <input type="text" class="form-control" formControlName="Title" 
                     minlength="3" 
-                    [(ngModel)]="productView.Title"
-                    required>
+                    [(ngModel)]="productView.Title">
                   </div>
-                  <span *ngIf="!prodName.valid && prodName.touched" class="error-block">
-                    <span *ngIf="prodName.errors!['required']">Type in the title of your product.</span>
-                    <span *ngIf="prodName.errors!['minlength']">Title should be at least 3 characters long.</span>
-                  </span>
+                  <!-- <span *ngIf="Title.invalid && (nextCLicked || Title.touched)" class="error-block">
+                    <span *ngIf="Title.errors!['required']">Type in the title of your product.</span>
+                    <span *ngIf="Title.errors!['minlength']">Title should be at least 3 characters long.</span>
+                  </span> -->
                 </div>
                 <!-- Type -->
                 <div class="form-group col-12 mt-2">
@@ -31,15 +30,15 @@
                   <label for="type">Type</label>
                   
                   <div class="input-group mt-2">
-                    <select name="type" class="form-select" ngModel name="Type" #prodType="ngModel" [(ngModel)]="productView.Type" required>
+                    <select class="form-select" formControlName="Type" [(ngModel)]="productView.Type">
                       <option *ngFor="let enum of keys()" value="{{enum}}">
                         {{enum}}
                       </option>
                     </select>
                   </div>
-                  <span *ngIf="prodType.touched" class="error-block">
+                  <!-- <span *ngIf="prodType.touched" class="error-block">
                     <span *ngIf="prodType.value == '0'">Please select a type.</span>
-                  </span>
+                  </span> -->
 
                 </div>
                 <!-- Size -->
@@ -49,7 +48,7 @@
                     <tabset class="member-tabset" #sizingTabs>
                       <tab heading="Universal Sizes">
                         <div class="input-group mt-2">
-                          <select name="size" class="form-select" ngModel name="Size" #prodSize="ngModel" [(ngModel)]="productView.Size">
+                          <select class="form-select" formControlName="Size" [(ngModel)]="productView.Size">
                             <option value="One Size Fits All">One Size Fits All</option>
                             <option value="XS">XS</option>
                             <option value="S">S</option>
@@ -58,17 +57,17 @@
                             <option value="XL">XL</option>
                           </select> 
                         </div>
-                        <span *ngIf="prodSize.touched" class="error-block">
+                        <!-- <span *ngIf="prodSize.touched" class="error-block">
                           <span *ngIf="!prodSize.value">{{prodSize.value}}Please select a size.</span>
-                        </span>
+                        </span> -->
                       </tab>
                       <tab heading="EU Sizes">
                         <div class="input-group mt-2">
-                          <input type="number" class="form-control" ngModel name="Size" #prodSize="ngModel" [(ngModel)]="productView.Size">
+                          <input type="number" class="form-control" formControlName="Size" [(ngModel)]="productView.Size">
                         </div>
-                        <span *ngIf="prodSize.touched" class="error-block">
+                        <!-- <span *ngIf="prodSize.touched" class="error-block">
                           <span *ngIf="!prodSize.value">{{prodSize.value}}Please select a size.</span>
-                        </span>
+                        </span> -->
                       </tab>
                     </tabset>
                   </div>
@@ -78,8 +77,8 @@
 
                 <!-- Condition -->
                 <label>Condition of your product:</label>
-                <div class="btn-group col-12 mb-2 mt-2" ngModel name="Condition" required [(ngModel)]="productView.Condition" btnRadioGroup>  
-                  <label class="btn btn-outline-primary" btnRadio="NEW" role="button" name="Condition" aria-selected="true">New</label>
+                <div class="btn-group col-12 mb-2 mt-2" formControlName="Condition" [(ngModel)]="productView.Condition" btnRadioGroup>  
+                  <label class="btn btn-outline-primary" btnRadio="NEW" role="button" name="Condition" [ariaSelected]="true">New</label>
                   <label class="btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="Condition">Pre-Loved</label>
                 </div>
 
@@ -87,7 +86,7 @@
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="year">Year</label> <i class="comment"> (Optional, year of manufacture)</i>
                   <div class="input-group mt-2">
-                    <input type="number" class="form-control" #prodYear="ngModel" ngModel name="Year" [(ngModel)]="productView.Year">
+                    <input type="number" class="form-control" formControlName="Year" [(ngModel)]="productView.Year">
                   </div>
                   <!-- <span *ngIf="prodYear.touched" class="error-block">
                     <span *ngIf="prodYear.value <= 1900">Please input a valid year.</span>
@@ -100,7 +99,7 @@
                   <label for="title">Description</label> <i class="comment"> (Optional)</i>
                   
                   <div class="input-group mt-2">
-                    <input type="text" class="form-control" #prodDesc="ngModel" ngModel name="Description" 
+                    <input type="text" class="form-control" formControlName="Description" 
                     minlength="10" 
                     [(ngModel)]="productView.Description">
                   </div>
@@ -116,7 +115,7 @@
                   <label for="title">City</label>  <i class="comment"> (Optional)</i>
                   
                   <div class="input-group mt-2">
-                    <select name="city" class="form-select" #prodCity="ngModel" ngModel name="City" [(ngModel)]="productView.City">
+                    <select class="form-select" formControlName="City" [(ngModel)]="productView.City">
                       <option value="Skopje">Skopje</option>
                       <option value="Gostivar">Gostivar</option>
                       <option value="Bitola">Bitola</option>
@@ -138,21 +137,21 @@
 
                 <div class="btn-group col-12">
                   <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary"
-                  (click)="selectTab(1)" [disabled]="!BasicInfo.valid">Next</button>
+                  (click)="selectTab(1)" [disabled]="getBasicInfo().invalid">Next</button>
                 </div>
               </tab>
 
-              <tab heading="Pricing and Payment Methods" class="p-3" ngModelGroup="PaymentInfo" #PaymentInfo="ngModelGroup">
+              <tab heading="Pricing and Payment Methods" class="p-3" formGroupName="PriceAndPaymentInfo">
                 <!-- Price -->
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="price">Price in Euros </label><i class="comment"> (Starting price for Auctioning, or final price for selling)</i>
                   <div class="input-group mt-2">
-                    <input type="number" class="form-control" #prodPrice="ngModel" ngModel name="Price" [(ngModel)]="productView.Price" required>
+                    <input type="number" class="form-control" formControlName="Price" [(ngModel)]="productView.Price">
                     <div class="input-group-text">€</div>
                   </div>
-                  <span *ngIf="prodPrice.touched" class="error-block">
+                  <!-- <span *ngIf="prodPrice.touched" class="error-block">
                     <span *ngIf="prodPrice.value <= 0">Please input a valid price for your product.</span>
-                  </span>
+                  </span> -->
                 </div>
                 <!-- Payment Methods -->
                 <div class="form-group col-12 mb-2 mt-2">
@@ -170,12 +169,12 @@
                     </div>
                   </label>
                 </div>
-                
+
                 <div class="btn-group col-12">
                   <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
                   (click)="selectTab(0)">Back</button>
                   <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary" 
-                  (click)="selectTab(2)" [disabled]="!PaymentInfo.valid || prodPrice.value <= 0">Next</button>
+                  (click)="selectTab(2)" [disabled]="getPriceAndPaymentInfo().invalid">Next</button>
                 </div>
               </tab>
 
@@ -187,10 +186,15 @@
                     This is under construtction.
                   </div>
                 </div>
-                <div class="btn-group col-12">
+                <!-- <div class="btn-group col-12">
                   <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
                   (click)="selectTab(1)">Back</button>
                   <button style="margin-top: 1rem;" [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
+                </div> -->
+                <div class="btn-group col-12">
+                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
+                  (click)="selectTab(1)">Back</button>
+                  <button style="margin-top: 1rem;" type="submit" class="btn btn-primary mr-2">Save</button>
                 </div>
               </tab>
             </tabset>
