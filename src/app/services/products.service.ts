@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ProductType } from '../product/product-list/ProductType';
 import { ProductConditionType } from '../product/product-list/ProductConditionType';
 import { IProduct } from '../model/iproduct';
+import { Product } from '../model/product';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,7 @@ export class ProductsService {
     );
   }
 
+  addProduct(product: Product){
+    localStorage.setItem('newProduct', JSON.stringify(product));
+  }
 }

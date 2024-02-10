@@ -24,6 +24,15 @@ export class ProductListComponent implements OnInit{
     this.productService.getAllProducts(this.User).subscribe({
       next: (data) => {
         this.products = data;
+       
+        var newProductUnparsed: string = localStorage.getItem('newProduct') ?? "";
+        if (newProductUnparsed != ""){
+          const newProduct: IProduct = JSON.parse(newProductUnparsed);
+          if (newProduct) {
+            this.products = [newProduct, ...this.products];
+          }
+        }
+        
         console.log(data);
       },
       error: (error) => {

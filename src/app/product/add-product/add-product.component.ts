@@ -1,10 +1,13 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductType } from '../product-list/ProductType';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { ProductConditionType } from '../product-list/ProductConditionType';
 import { IProduct } from '../../model/iproduct';
+import { Product } from '../../model/product';
+import { ProductsService } from '../../services/products.service';
+import { AlertifyService } from '../../services/alertify.service';
 
 @Component({
   selector: 'app-add-product',
@@ -17,11 +20,17 @@ export class AddProductComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
   
   public ProductType = ProductType;
+  product = new Product();
 
   addProductForm!: FormGroup;
   nextCLicked: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private productService: ProductsService,
+    private alertify: AlertifyService
+    ) { }
 
   createAddPropertyForm(){
     this.addProductForm = this.fb.group({
@@ -75,7 +84,10 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.addProductForm)
+    // console.log(this.addProductForm)
+    this.mapProduct();
+    this.productService.addProduct(this.product);
+    this.alertify.success("Product sucessfully published.")
   }
 
   selectTab(tabId: number){
@@ -85,4 +97,58 @@ export class AddProductComponent implements OnInit {
       console.log("success");
     }
   }
+
+  // Getter Methods
+  get BasicInfo(){
+    return this.addProductForm.controls['BasicInfo'] as FormGroup;
+  }
+
+  get PriceAndPaymentInfo(){
+    return this.addProductForm.controls['PriceAndPaymentInfo'] as FormGroup;
+  }
+
+  get Title(){
+    return this.BasicInfo.controls['Title'] as FormControl;
+  }
+
+  get Type(){
+    return this.BasicInfo.controls['Type'] as FormControl;
+  }
+
+  get Size(){
+    return this.BasicInfo.controls['Size'] as FormControl;
+  }
+  
+  get Condition(){
+    return this.BasicInfo.controls['Condition'] as FormControl;
+  }
+
+  get Year(){
+    return this.BasicInfo.controls['Year'] as FormControl;
+  }
+
+  get Description(){
+    return this.BasicInfo.controls['Description'] as FormControl;
+  }
+  
+  get City(){
+    return this.BasicInfo.controls['City'] as FormControl;
+  }
+
+  get Price(){
+    return this.PriceAndPaymentInfo.controls['Price'] as FormControl;
+  }
+
+  mapProduct(): void{
+    this.product.Type = this.Type.value;
+    this.product.Title = this.Title.value;
+    this.product.Size = this.Size.value;
+    this.product.Condition = this.Condition.value;
+    this.product.Year = this.Year.value;
+    this.product.Description = this.Description.value;
+    this.product.City = this.City.value;
+    this.product.Price = this.Price.value;
+    this.product.User = localStorage.getItem('token') ?? ""; 
+  }
+
 }
