@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../model/iproduct';
@@ -19,20 +17,11 @@ export class ProductListComponent implements OnInit{
 
   ngOnInit(): void {
     if (this.route.snapshot.url.toString()){
-      this.User = "miabosheva"
+      this.User = "Mia Bosheva"
     }
     this.productService.getAllProducts(this.User).subscribe({
       next: (data) => {
         this.products = data;
-       
-        var newProductUnparsed: string = localStorage.getItem('newProduct') ?? "";
-        if (newProductUnparsed != ""){
-          const newProduct: IProduct = JSON.parse(newProductUnparsed);
-          if (newProduct) {
-            this.products = [newProduct, ...this.products];
-          }
-        }
-        
         console.log(data);
       },
       error: (error) => {

@@ -19,6 +19,20 @@ export class ProductsService {
         map((data: any) => {
           const propertiesArray: IProduct[] = [];
           
+          let localProducts = localStorage.getItem('newProduct');
+          if (localProducts) {
+            let localProductsParsed = JSON.parse(localProducts)
+            Object.keys(localProductsParsed).forEach(id => {
+              if(localProductsParsed.hasOwnProperty(id)) {
+                console.log(User);
+                console.log(localProductsParsed[id].User);
+                localProductsParsed[id].Type = ProductType[localProductsParsed[id].Type]
+                localProductsParsed[id].Condition = ProductConditionType[localProductsParsed[id].Condition]
+                propertiesArray.push(localProductsParsed[id]);
+              }
+            })
+          }
+          
           Object.keys(data).forEach(id => {
             if (data.hasOwnProperty(id) && data[id].User === User) {
               data[id].Type = ProductType[data[id].Type]
@@ -33,6 +47,10 @@ export class ProductsService {
   }
 
   addProduct(product: Product){
-    localStorage.setItem('newProduct', JSON.stringify(product));
+    let newProduct = [product];
+    if (localStorage.getItem('newProduct')){
+      newProduct = [product, ...JSON.parse(localStorage.getItem('newProduct') ?? "")];
+    }
+    localStorage.setItem('newProduct', JSON.stringify(newProduct));
   }
 }

@@ -140,6 +140,7 @@ export class AddProductComponent implements OnInit {
   }
 
   mapProduct(): void{
+    this.product.Id = -1;
     this.product.Type = this.Type.value;
     this.product.Title = this.Title.value;
     this.product.Size = this.Size.value;
