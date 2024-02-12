@@ -23,6 +23,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 const appRoutes: Routes = [
   {path: "", component: ProductListComponent},
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
-    MatSelectCountryModule.forRoot('de')
+    MatSelectCountryModule.forRoot('de'),
+    NgxGalleryModule
   ],
   providers: [
     ProductsService,

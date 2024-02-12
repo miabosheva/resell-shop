@@ -4,6 +4,7 @@
 
 .card img {
     padding: 10px;
+    height: fit-content;
 }
 
 .btn {
@@ -12,4 +13,15 @@
 
 .tab-panel {
     height: 100%;
+}
+
+ngx-gallery { 
+    margin: auto 0;
+    display: inline-block; 
+}
+
+.tab-body {
+    display: flex;
+    height: 500px;
+    justify-content: center;
 }
