@@ -12,4 +12,8 @@ export class ProductCardComponent {
   product!: IProductBase; 
 
   @Input() hideIcons!: boolean;
+
+  ngOnInit(){
+    console.log(this.product.Image);
+  }
 }

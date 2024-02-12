@@ -5,3 +5,11 @@
 .card img {
     padding: 10px;
 }
+
+.btn {
+    font-size: larger;
+}
+
+.tab-panel {
+    height: 100%;
+}

@@ -2,21 +2,22 @@
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img class="card-img-top" src="assets/images/img1.jpg">
+        <img *ngIf="product.Image" class="card-img-top" src="assets/images/{{product.Image}}.jpg">
+        <img *ngIf="!product.Image" class="card-img-top" src="assets/images/placeholder.jpg">
       </div>
       <div class="card-body">
-        <h1 class="card-title">Title</h1>
+        <h1 class="card-title">{{product.Title}}</h1>
         <div>
-          <strong>Size:</strong> Size
+          <strong>Size:</strong> {{product.Size}}
         </div>
         <div>
-          <strong>Condition:</strong> Condition 
+          <strong>Condition:</strong> {{product.Condition}}
         </div>
       </div>
       <div class="card-footer">
         <div class="btn-group d-flex">
           <button class="btn btn-primary">Add To Favorites</button>
-          <button class="btn btn-success">Buy For <span>30$</span></button>
+          <button class="btn btn-success">Buy For <span>{{product.Price}}€</span></button>
         </div>
       </div>
     </div>
@@ -25,7 +26,22 @@
     <div class="tab-panel">
       <tabset class="member-tabset">
         <tab heading="Overview">
-
+          <div class="heading">
+            <strong>Description:</strong>
+            <p>{{product.Description}}</p>
+          </div>
+          <div class="heading">
+            <strong>Type:</strong>
+            <p>{{product.Type}}</p>
+          </div>
+          <div class="heading">
+            <strong>Year:</strong>
+            <p>{{product.Year}}</p>
+          </div>
+          <div class="heading">
+            <strong>City:</strong>
+            <p>{{product.City}}</p>
+          </div>
         </tab>
         <tab heading="Photos">
 
@@ -35,13 +51,3 @@
 
   </div>
 <p>
-product-detail works!
-Selected proprty is {{productId}}
-<br/>
-<button (click)="onSelectNext()" class="btn btn-primary">Go to next</button>
-<button routerLink="/product-detail/1" class="btn btn-primary">1</button>
-<button routerLink="/product-detail/2" class="btn btn-primary">2</button>
-<button routerLink="/product-detail/3" class="btn btn-primary">3</button>
-</p>
-
-</div>

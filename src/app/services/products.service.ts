@@ -15,7 +15,11 @@ export class ProductsService {
   constructor(private http:HttpClient) { }
 
   getProduct(id: number){
-
+    return this.getAllProducts().pipe(
+      map(productsArray => {
+        return productsArray.find(p => p.Id === id);
+      })
+    );
   }
 
   getAllProducts(User?: string): Observable<IProduct[]>{
@@ -29,16 +33,14 @@ export class ProductsService {
             Object.keys(localProductsParsed).forEach(id => {
               if (User){
                 if(localProductsParsed.hasOwnProperty(id)) {
-                  console.log(User);
-                  console.log(localProductsParsed[id].User);
-                  localProductsParsed[id].Type = ProductType[localProductsParsed[id].Type]
-                  localProductsParsed[id].Condition = ProductConditionType[localProductsParsed[id].Condition]
+                  localProductsParsed[id].Type = localProductsParsed[id].Type;
+                  localProductsParsed[id].Condition = localProductsParsed[id].Condition;
                   propertiesArray.push(localProductsParsed[id]);
                 }
               }
               else {
-                localProductsParsed[id].Type = ProductType[localProductsParsed[id].Type]
-                localProductsParsed[id].Condition = ProductConditionType[localProductsParsed[id].Condition]
+                localProductsParsed[id].Type = localProductsParsed[id].Type;
+                localProductsParsed[id].Condition = localProductsParsed[id].Condition;
                 propertiesArray.push(localProductsParsed[id]);
               }
             })
@@ -47,14 +49,14 @@ export class ProductsService {
           Object.keys(data).forEach(id => {
             if (User){
               if (data.hasOwnProperty(id) && data[id].User === User) {
-                data[id].Type = ProductType[data[id].Type]
-                data[id].Condition = ProductConditionType[data[id].Condition]
+                data[id].Type = ProductType[data[id].Type];
+                data[id].Condition = ProductConditionType[data[id].Condition];
                 propertiesArray.push(data[id]);
               }
             }
             else{
-              data[id].Type = ProductType[data[id].Type]
-              data[id].Condition = ProductConditionType[data[id].Condition]
+              data[id].Type = ProductType[data[id].Type];
+              data[id].Condition = ProductConditionType[data[id].Condition];
               propertiesArray.push(data[id]);
             }
           });

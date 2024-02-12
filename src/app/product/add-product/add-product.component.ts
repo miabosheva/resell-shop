@@ -59,7 +59,8 @@ export class AddProductComponent implements OnInit {
     Price: 0,
     Year: 0,
     City: '',
-    Description: ''
+    Description: '',
+    Image: "placeholder"
   };
 
   ngOnInit() {
@@ -139,9 +140,14 @@ export class AddProductComponent implements OnInit {
     return this.PriceAndPaymentInfo.controls['Price'] as FormControl;
   }
 
+  get Image(){
+    return new FormControl;
+  }
+
   mapProduct(): void{
     this.product.Id = -1;
-    this.product.Type = this.Type.value;
+    console.log(ProductType[this.Type.value]);
+  //  this.product.Type = ProductType[this.Type.value];
     this.product.Title = this.Title.value;
     this.product.Size = this.Size.value;
     this.product.Condition = this.Condition.value;
@@ -150,6 +156,7 @@ export class AddProductComponent implements OnInit {
     this.product.City = this.City.value;
     this.product.Price = this.Price.value;
     this.product.User = localStorage.getItem('token') ?? ""; 
+    // this.product.Image = "placeholder";
   }
 
 }
