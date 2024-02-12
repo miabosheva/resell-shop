@@ -14,7 +14,11 @@ export class ProductsService {
 
   constructor(private http:HttpClient) { }
 
-  getAllProducts(User: string): Observable<IProduct[]>{
+  getProduct(id: number){
+
+  }
+
+  getAllProducts(User?: string): Observable<IProduct[]>{
     return this.http.get('data/properties.json').pipe(
         map((data: any) => {
           const propertiesArray: IProduct[] = [];
@@ -23,9 +27,16 @@ export class ProductsService {
           if (localProducts) {
             let localProductsParsed = JSON.parse(localProducts)
             Object.keys(localProductsParsed).forEach(id => {
-              if(localProductsParsed.hasOwnProperty(id)) {
-                console.log(User);
-                console.log(localProductsParsed[id].User);
+              if (User){
+                if(localProductsParsed.hasOwnProperty(id)) {
+                  console.log(User);
+                  console.log(localProductsParsed[id].User);
+                  localProductsParsed[id].Type = ProductType[localProductsParsed[id].Type]
+                  localProductsParsed[id].Condition = ProductConditionType[localProductsParsed[id].Condition]
+                  propertiesArray.push(localProductsParsed[id]);
+                }
+              }
+              else {
                 localProductsParsed[id].Type = ProductType[localProductsParsed[id].Type]
                 localProductsParsed[id].Condition = ProductConditionType[localProductsParsed[id].Condition]
                 propertiesArray.push(localProductsParsed[id]);
@@ -34,7 +45,14 @@ export class ProductsService {
           }
           
           Object.keys(data).forEach(id => {
-            if (data.hasOwnProperty(id) && data[id].User === User) {
+            if (User){
+              if (data.hasOwnProperty(id) && data[id].User === User) {
+                data[id].Type = ProductType[data[id].Type]
+                data[id].Condition = ProductConditionType[data[id].Condition]
+                propertiesArray.push(data[id]);
+              }
+            }
+            else{
               data[id].Type = ProductType[data[id].Type]
               data[id].Condition = ProductConditionType[data[id].Condition]
               propertiesArray.push(data[id]);
