@@ -11,12 +11,12 @@
               <tab class="p-3" heading="Basic Info" formGroupName="BasicInfo">
                 <!-- Title -->
                 <div class="form-group col-12 mt-2">
-                  
+
                   <label for="title">Title</label>
-                  
+
                   <div class="input-group mt-2">
-                    <input type="text" class="form-control" formControlName="Title" 
-                    minlength="3" 
+                    <input type="text" class="form-control" formControlName="Title"
+                    minlength="3"
                     [(ngModel)]="productView.Title">
                   </div>
                   <!-- <span *ngIf="Title.invalid && (nextCLicked || Title.touched)" class="error-block">
@@ -26,9 +26,9 @@
                 </div>
                 <!-- Type -->
                 <div class="form-group col-12 mt-2">
-                  
+
                   <label for="type">Type</label>
-                  
+
                   <div class="input-group mt-2">
                     <select class="form-select" formControlName="Type" [(ngModel)]="productView.Type">
                       <option *ngFor="let enum of keys()" value="{{enum}}">
@@ -55,7 +55,7 @@
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
-                          </select> 
+                          </select>
                         </div>
                         <!-- <span *ngIf="prodSize.touched" class="error-block">
                           <span *ngIf="!prodSize.value">{{prodSize.value}}Please select a size.</span>
@@ -72,12 +72,12 @@
                     </tabset>
                   </div>
                 </div>
-                
+
                 <br/>
 
                 <!-- Condition -->
                 <label>Condition of your product:</label>
-                <div class="btn-group col-12 mb-2 mt-2" formControlName="Condition" [(ngModel)]="productView.Condition" btnRadioGroup>  
+                <div class="btn-group col-12 mb-2 mt-2" formControlName="Condition" [(ngModel)]="productView.Condition" btnRadioGroup>
                   <label class="btn btn-outline-primary" btnRadio="NEW" role="button" name="Condition" [ariaSelected]="true">New</label>
                   <label class="btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="Condition">Pre-Loved</label>
                 </div>
@@ -95,12 +95,12 @@
 
                 <!-- Description not required -->
                 <div class="form-group col-12 mt-2">
-                  
+
                   <label for="title">Description</label> <i class="comment"> (Optional)</i>
-                  
+
                   <div class="input-group mt-2">
-                    <input type="text" class="form-control" formControlName="Description" 
-                    minlength="10" 
+                    <input type="text" class="form-control" formControlName="Description"
+                    minlength="10"
                     [(ngModel)]="productView.Description">
                   </div>
                   <!-- <span *ngIf="!prodDesc.valid && prodDesc.touched" class="error-block">
@@ -110,30 +110,16 @@
                 </div>
 
                 <!-- City not required-->
-                <div class="form-group col-12 mt-2">
-                  
+                <!-- <div class="form-group col-12 mt-2">
+
                   <label for="title">City</label>  <i class="comment"> (Optional)</i>
-                  
+
                   <div class="input-group mt-2">
-                    <select class="form-select" formControlName="City" [(ngModel)]="productView.City">
-                      <option value="Skopje">Skopje</option>
-                      <option value="Gostivar">Gostivar</option>
-                      <option value="Bitola">Bitola</option>
-                      <option value="Kumanovo">Kumanovo</option>
-                      <option value="Debar">Debar</option>
-                      <option value="Kicevo">Kicevo</option>
-                      <option value="Ohrid">Ohird</option>
-                      <option value="Struga">Struga</option>
-                      <option value="Tetovo">Tetovo</option>
-                      <option value="Veles">Veles</option>
-                      <option value="Kavadarci">Kavadarci</option>
-                      <option value="Negotino">Negotino</option>
-                    </select> 
+                    <select class="form-select" formControlName="City" [(ngModel)]="productView.City" >
+                      <option *ngFor="let city in cities" value="{{city}}">{{city}}</option>
+                    </select>
                   </div>
-                  <!-- <span *ngIf="prodCity.touched" class="error-block">
-                    <span *ngIf="prodCity.value == 0">Please select what city you're from.</span>
-                  </span> -->
-                </div>
+                </div> -->
 
                 <div class="btn-group col-12">
                   <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary"
@@ -171,9 +157,9 @@
                 </div>
 
                 <div class="btn-group col-12">
-                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
+                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary"
                   (click)="selectTab(0)">Back</button>
-                  <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary" 
+                  <button style="margin-top: 1rem;" type="button" class="btn btn-block btn-primary"
                   (click)="selectTab(2)" [disabled]="getPriceAndPaymentInfo().invalid">Next</button>
                 </div>
               </tab>
@@ -187,19 +173,19 @@
                   </div>
                 </div>
                 <!-- <div class="btn-group col-12">
-                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
+                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary"
                   (click)="selectTab(1)">Back</button>
                   <button style="margin-top: 1rem;" [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
                 </div> -->
                 <div class="btn-group col-12">
-                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary" 
+                  <button style="margin-top: 1rem; margin-right: 0.7rem;" type="button" class="btn btn-block btn-primary"
                   (click)="selectTab(1)">Back</button>
                   <button style="margin-top: 1rem;" type="submit" class="btn btn-primary mr-2">Save</button>
                 </div>
               </tab>
             </tabset>
 
-            
+
           </div>
         </form>
       </div>
@@ -214,6 +200,6 @@
         <app-product-card [product]="productView" [hideIcons]="true"></app-product-card>
       </div>
     </div>
-    
+
   </div>
 </div>

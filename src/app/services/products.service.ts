@@ -15,7 +15,7 @@ export class ProductsService {
   constructor(private http:HttpClient) { }
 
   getAllCities(): Observable<string[]> {
-    return this.http.get<string[]>('https://localhost:44355/api/city');
+    return this.http.get<string[]>('https://localhost:7232/api/city');
   }
 
   getProduct(id: number){

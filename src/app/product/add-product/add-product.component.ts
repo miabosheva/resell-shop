@@ -21,6 +21,7 @@ export class AddProductComponent implements OnInit {
 
   public ProductType = ProductType;
   product = new Product();
+  public cities: string[] = [];
 
   addProductForm!: FormGroup;
   nextCLicked: boolean = false;
@@ -58,7 +59,7 @@ export class AddProductComponent implements OnInit {
     Condition: ProductConditionType.NEW,
     Price: 0,
     Year: 0,
-    City: '',
+    // City: '',
     Description: '',
     Image: "placeholder"
   };
@@ -67,6 +68,7 @@ export class AddProductComponent implements OnInit {
     this.createAddPropertyForm();
     this.productService.getAllCities().subscribe(data=>{
       console.log(data);
+      this.cities = data;
     });
   }
 
@@ -135,9 +137,9 @@ export class AddProductComponent implements OnInit {
     return this.BasicInfo.controls['Description'] as FormControl;
   }
 
-  get City(){
-    return this.BasicInfo.controls['City'] as FormControl;
-  }
+  // get City(){
+  //   return this.BasicInfo.controls['City'] as FormControl;
+  // }
 
   get Price(){
     return this.PriceAndPaymentInfo.controls['Price'] as FormControl;
@@ -156,7 +158,7 @@ export class AddProductComponent implements OnInit {
     this.product.Condition = this.Condition.value;
     this.product.Year = this.Year.value;
     this.product.Description = this.Description.value;
-    this.product.City = this.City.value;
+    // this.product.City = this.City.value;
     this.product.Price = this.Price.value;
     this.product.User = localStorage.getItem('token') ?? "";
     // this.product.Image = "placeholder";

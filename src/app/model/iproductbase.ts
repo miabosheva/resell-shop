@@ -10,6 +10,6 @@ export interface IProductBase{
     Price: number;
     Condition: ProductConditionType;
     Year?: number;
-    City?: string;
+    // City?: string;
     Image?: string;
 }

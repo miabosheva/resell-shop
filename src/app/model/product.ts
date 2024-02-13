@@ -12,6 +12,6 @@ export class Product implements IProduct{
     Price: number = 0;
     Condition: ProductConditionType = ProductConditionType.NEW;
     Year?: number | undefined;
-    City?: string | undefined;
+    // City?: string | undefined;
     Image?: string | undefined;
 }
