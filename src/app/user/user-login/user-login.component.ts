@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
               private alertify: AlertifyService,
               private router: Router) { }
 
@@ -20,14 +20,18 @@ export class UserLoginComponent implements OnInit {
 
   onLogin(loginForm: NgForm){
     console.log(loginForm.value);
-    const token = this.authService.authUser(loginForm.value);
-    if (token) {
-      localStorage.setItem('token', token.userName);
-      this.alertify.success("Welcome back " + token.userName);
-      this.router.navigate(['/']);
-    } else {
-      this.alertify.error("Log In Failed");
-    }
+    this.authService.authUser(loginForm.value).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
+    // if (token) {
+    //   localStorage.setItem('token', token.userName);
+    //   this.alertify.success("Welcome back " + token.userName);
+    //   this.router.navigate(['/']);
+    // } else {
+    //   this.alertify.error("Log In Failed");
+    // }
   }
 
 }

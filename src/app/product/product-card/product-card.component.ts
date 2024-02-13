@@ -9,11 +9,11 @@ import { IProductBase } from '../../model/iproductbase';
 
 export class ProductCardComponent {
   @Input()
-  product!: IProductBase; 
+  product!: IProductBase;
 
   @Input() hideIcons!: boolean;
 
   ngOnInit(){
-    console.log(this.product.Image);
+    // console.log(this.product.Image);
   }
 }

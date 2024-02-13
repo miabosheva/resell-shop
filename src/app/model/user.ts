@@ -4,3 +4,8 @@ export interface User {
     password: string;
     phoneNumber: number;
 }
+
+export interface UserForLogin {
+    userName: string;
+    password: string;
+}

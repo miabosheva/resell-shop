@@ -13,11 +13,11 @@ export class ProductDetailComponent implements OnInit {
 
   public productId: number = -1;
   product = new Product();
-  
+
   galleryOptions: NgxGalleryOptions[] = [];
   galleryImages: NgxGalleryImage[] = [];
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private productService: ProductsService) { }
 
@@ -67,7 +67,6 @@ export class ProductDetailComponent implements OnInit {
         this.productService.getProduct(this.productId).subscribe(
           (data?: Product) => {
             this.product = data!;
-            console.log(this.product.Image)
           }
         )
       }

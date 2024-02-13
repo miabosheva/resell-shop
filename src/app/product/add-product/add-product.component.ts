@@ -18,7 +18,7 @@ export class AddProductComponent implements OnInit {
 [x: string]: any;
   // @ViewChild('Form') addProductForm: NgForm | undefined;
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
-  
+
   public ProductType = ProductType;
   product = new Product();
 
@@ -26,7 +26,7 @@ export class AddProductComponent implements OnInit {
   nextCLicked: boolean = false;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router,
     private productService: ProductsService,
     private alertify: AlertifyService
@@ -65,6 +65,9 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.createAddPropertyForm();
+    this.productService.getAllCities().subscribe(data=>{
+      console.log(data);
+    });
   }
 
   onBack(){
@@ -119,7 +122,7 @@ export class AddProductComponent implements OnInit {
   get Size(){
     return this.BasicInfo.controls['Size'] as FormControl;
   }
-  
+
   get Condition(){
     return this.BasicInfo.controls['Condition'] as FormControl;
   }
@@ -131,7 +134,7 @@ export class AddProductComponent implements OnInit {
   get Description(){
     return this.BasicInfo.controls['Description'] as FormControl;
   }
-  
+
   get City(){
     return this.BasicInfo.controls['City'] as FormControl;
   }
@@ -155,7 +158,7 @@ export class AddProductComponent implements OnInit {
     this.product.Description = this.Description.value;
     this.product.City = this.City.value;
     this.product.Price = this.Price.value;
-    this.product.User = localStorage.getItem('token') ?? ""; 
+    this.product.User = localStorage.getItem('token') ?? "";
     // this.product.Image = "placeholder";
   }
 

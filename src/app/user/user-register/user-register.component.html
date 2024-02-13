@@ -2,7 +2,7 @@
   <div class="col-6 m-auto">
   <div class="card m-auto">
     <div class="card-header">
-      Register
+      <h3>Register</h3>
     </div>
     <div class="card-body">
       <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
@@ -61,7 +61,7 @@
           <input type="text" class="form-control" formControlName="phoneNumber">
           <span class="error-block" *ngIf="!phoneNumber.valid && (phoneNumber.touched || userSubmitted)"
             class="error-block">
-              Please enter a valid phone number. Should be less than 10 digits. 
+              Please enter a valid phone number. Should be less than 10 digits.
             </span>
         </div>
 

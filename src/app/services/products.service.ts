@@ -14,6 +14,10 @@ export class ProductsService {
 
   constructor(private http:HttpClient) { }
 
+  getAllCities(): Observable<string[]> {
+    return this.http.get<string[]>('https://localhost:44355/api/city');
+  }
+
   getProduct(id: number){
     return this.getAllProducts().pipe(
       map(productsArray => {
@@ -26,7 +30,7 @@ export class ProductsService {
     return this.http.get('data/properties.json').pipe(
         map((data: any) => {
           const propertiesArray: IProduct[] = [];
-          
+
           let localProducts = localStorage.getItem('newProduct');
           if (localProducts) {
             let localProductsParsed = JSON.parse(localProducts)
@@ -45,7 +49,7 @@ export class ProductsService {
               }
             })
           }
-          
+
           Object.keys(data).forEach(id => {
             if (User){
               if (data.hasOwnProperty(id) && data[id].User === User) {
