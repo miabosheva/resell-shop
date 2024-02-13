@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators,  ValidationErrors, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
-import { UserServiceService } from '../../services/user-service.service';
-import { User } from '../../model/user';
+
+import { UserForRegister } from '../../model/user';
 import * as alertify from 'alertifyjs';
 import { AlertifyService } from '../../services/alertify.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-register',
@@ -11,13 +12,13 @@ import { AlertifyService } from '../../services/alertify.service';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit {
-  
+
   registerationForm: FormGroup;
-  user : User | undefined;
+  user : UserForRegister | undefined;
   userSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, 
-              private userService: UserServiceService, 
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
               private alertify: AlertifyService) {
     this.registerationForm = this.fb.group({
       userName: [null, Validators.required],
@@ -59,7 +60,7 @@ export class UserRegisterComponent implements OnInit {
   }
   // ------------------------
 
-  userData(): User {
+  userData(): UserForRegister {
     return this.user = {
       userName: this.userName.value,
       email: this.email.value,
@@ -71,14 +72,23 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     this.userSubmitted = true;
     if (this.registerationForm.valid){
-      // console.log(this.registerationForm);
-      this.user = Object.assign({}, this.registerationForm.value);
-      this.userService.addUser(this.userData());
-      this.registerationForm.reset();
-      this.userSubmitted = false;
-      this.alertify.success('User succesfully registered!');
+      // this.user = Object.assign({}, this.registerationForm.value);
+      this.authService.registerUser(this.userData()).subscribe(() =>
+        {
+          this.onReset();
+          this.alertify.success('Register is successful.')
+        }, error => {
+          console.log(error);
+          this.alertify.error(error.error);
+        }
+      );
     } else {
       this.alertify.error('Please type in the required fields.');
     }
+  }
+
+  private onReset() {
+    this.registerationForm.reset();
+    this.userSubmitted = false;
   }
 }
