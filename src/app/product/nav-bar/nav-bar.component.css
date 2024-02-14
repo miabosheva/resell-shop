@@ -1,0 +1,25 @@
+.shop-icon h4{
+  font-weight: 400;
+  padding: 7px 26px 3px;
+}
+
+a {
+  font-family: monospace;
+}
+
+li {
+  padding: 5px 12px 3px;
+}
+
+.welcome-back{
+  max-width: 200px;
+}
+
+a:hover{
+  color: rgb(255, 174, 255);
+}
+
+.dropdown-toggle:hover
+{
+  background-color: rgb(123, 83, 123);
+}

@@ -15,13 +15,47 @@
     height: 100%;
 }
 
-ngx-gallery { 
+ngx-gallery {
     margin: auto 0;
-    display: inline-block; 
+    display: inline-block;
 }
 
 .tab-body {
     display: flex;
     height: 500px;
     justify-content: center;
+}
+
+button, strong, p {
+  font-family: monospace;
+}
+
+.buy-btn{
+  background-color: rgb(84, 202, 84);
+  color: white;
+  border: none;
+}
+
+.buy-btn:hover{
+  background-color: rgb(6, 173, 6);
+  color: white;
+}
+
+.fav-btn{
+  background-color: rgb(137, 90, 168);
+  color: white;
+  border: none;
+}
+
+.fav-btn:hover{
+  background-color: rgb(107, 32, 156);
+  color: white;
+}
+
+.card-title{
+  font-family: perpetua;
+}
+
+.card-body {
+  padding: 20px;
 }

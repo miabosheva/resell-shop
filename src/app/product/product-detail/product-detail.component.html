@@ -8,16 +8,20 @@
       <div class="card-body">
         <h1 class="card-title">{{product.title}}</h1>
         <div>
-          <strong>Size:</strong> {{product.size}}
+          <h5>
+            <strong>Size:</strong> {{product.size}}
+          </h5>
         </div>
         <div>
-          <strong>Condition:</strong> {{product.conditionType}}
+          <h5>
+            <strong>Condition:</strong> {{product.conditionType}}
+          </h5>
         </div>
       </div>
       <div class="card-footer">
-        <div class="btn-group d-flex">
-          <button class="btn btn-primary">Add To Favorites</button>
-          <button class="btn btn-success">Buy For <span>{{product.price}}€</span></button>
+        <div class="btn-group col-12 mb-2 mt-2" btnRadioGroup>
+          <label class="btn fav-btn btn-outline-primary" btnRadio="NEW" role="button" name="Condition">Add To Favorites</label>
+          <label class="btn buy-btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="Condition">Buy For <span>{{product.price}}€</span></label>
         </div>
       </div>
     </div>
@@ -27,16 +31,22 @@
       <tabset class="member-tabset">
         <tab heading="Overview">
           <div class="heading">
-            <strong>Description:</strong>
-            <p>{{product.description}}</p>
+            <h5>
+              <strong>Description:</strong>
+              <p>{{product.description}}</p>
+            </h5>
           </div>
           <div class="heading">
-            <strong>Type:</strong>
-            <p>{{product.productType}}</p>
+            <h5>
+              <strong>Type:</strong>
+              <p>{{product.productType}}</p>
+            </h5>
           </div>
           <div class="heading">
-            <strong>Year:</strong>
-            <p>{{product.year}}</p>
+            <h5>
+              <strong>Year:</strong>
+              <p>{{product.year}}</p>
+            </h5>
           </div>
           <!-- <div class="heading">
             <strong>City:</strong>
