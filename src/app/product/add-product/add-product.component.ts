@@ -51,17 +51,15 @@ export class AddProductComponent implements OnInit {
   }
 
   productView: IProduct = {
-    Id: -1,
-    User: '',
-    Title: '',
-    Type: ProductType.SHOE,
-    Size: '',
-    Condition: ProductConditionType.NEW,
-    Price: 0,
-    Year: 0,
+    id: -1,
+    title: '',
+    productType: ProductType.SHOE,
+    size: '',
+    conditionType: ProductConditionType.NEW,
+    price: 0,
+    year: 0,
     // City: '',
-    Description: '',
-    Image: "placeholder"
+    description: ''
   };
 
   ngOnInit() {
@@ -92,8 +90,19 @@ export class AddProductComponent implements OnInit {
   onSubmit(){
     // console.log(this.addProductForm)
     this.mapProduct();
-    this.productService.addProduct(this.product);
-    this.alertify.success("Product sucessfully published.")
+    console.log(this.product);
+    if (this.BasicInfo.valid && this.PriceAndPaymentInfo.valid){
+      this.productService.addProduct(this.product).subscribe(() =>
+        {
+          this.alertify.success("Product sucessfully published.");
+        }, error => {
+          console.log(error);
+          this.alertify.error(error.error);
+        }
+      );
+    } else {
+      this.alertify.error('Please type in the required fields.');
+    }
   }
 
   selectTab(tabId: number){
@@ -150,17 +159,15 @@ export class AddProductComponent implements OnInit {
   }
 
   mapProduct(): void{
-    this.product.Id = -1;
-    console.log(ProductType[this.Type.value]);
-  //  this.product.Type = ProductType[this.Type.value];
-    this.product.Title = this.Title.value;
-    this.product.Size = this.Size.value;
-    this.product.Condition = this.Condition.value;
-    this.product.Year = this.Year.value;
-    this.product.Description = this.Description.value;
-    // this.product.City = this.City.value;
-    this.product.Price = this.Price.value;
-    this.product.User = localStorage.getItem('token') ?? "";
+    this.product.id = -1;
+    this.product.productType = this.Type.value;
+    this.product.title = this.Title.value;
+    this.product.size = this.Size.value;
+    this.product.conditionType = this.Condition.value;
+    this.product.year = this.Year.value;
+    this.product.description = this.Description.value;
+    this.product.price = this.Price.value;
+    this.product.username = localStorage.getItem('username') ?? "";
     // this.product.Image = "placeholder";
   }
 

@@ -2,12 +2,11 @@ import { ProductType } from "./ProductType";
 import { ProductConditionType } from "./ProductConditionType";
 
 export interface IProduct{
-    Id: number;
-    User: string;
-    Title: string;
-    Type: ProductType;
-    Size: string;
-    Price: number;
-    Condition: ProductConditionType;
-    Image?: string;
+    id: number;
+    title: string;
+    productType: ProductType;
+    size: string;
+    price: number;
+    condition: ProductConditionType;
+    image?: string;
 }

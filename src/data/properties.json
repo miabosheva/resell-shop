@@ -1,6 +1,6 @@
 [
     {
-        "Id": 1,
+        "id": 1,
         "User": "miabosheva",
         "Title": "Zara Top",
         "Type": 1,
@@ -13,7 +13,7 @@
         "Image": "img1"
     },
     {
-      "Id": 2,
+      "id": 2,
       "User": "user1234",
       "Title": "Zara Jeans",
       "Type": 2,
@@ -26,7 +26,7 @@
       "Image": "img1"
     },
     {
-      "Id": 3,
+      "id": 3,
       "User": "user1234",
       "Title": "Bershka Sweater",
       "Type": 1,
@@ -39,7 +39,7 @@
       "Image": "img1"
     },
     {
-      "Id": 4,
+      "id": 4,
       "User": "user1234",
       "Title": "Massimo Dutti: Shoes",
       "Type": 0,
@@ -52,7 +52,7 @@
       "Image": "img1"
     },
     {
-      "Id": 5,
+      "id": 5,
       "User": "miabosheva",
       "Title": "Loewe Tie",
       "Type": 4,
@@ -65,7 +65,7 @@
       "Image": "img1"
     },
     {
-      "Id": 6,
+      "id": 6,
       "User": "user1234",
       "Title": "Dior Wallet",
       "Type": 4,
@@ -78,7 +78,7 @@
       "Image": "img1"
     },
     {
-      "Id": 7,
+      "id": 7,
       "User": "user1234",
       "Title": "Nike Dunk Low",
       "Type": 0,
@@ -89,5 +89,5 @@
       "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "Price": 120,
       "Image": "img1"
-    } 
+    }
 ]

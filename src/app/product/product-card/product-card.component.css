@@ -60,3 +60,7 @@
     background: #7c7979;
     border: none;
 }
+
+.card-footer button {
+  padding: 6px 40px 0px 40px;
+}

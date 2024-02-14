@@ -17,12 +17,8 @@
                   <div class="input-group mt-2">
                     <input type="text" class="form-control" formControlName="Title"
                     minlength="3"
-                    [(ngModel)]="productView.Title">
+                    [(ngModel)]="productView.title">
                   </div>
-                  <!-- <span *ngIf="Title.invalid && (nextCLicked || Title.touched)" class="error-block">
-                    <span *ngIf="Title.errors!['required']">Type in the title of your product.</span>
-                    <span *ngIf="Title.errors!['minlength']">Title should be at least 3 characters long.</span>
-                  </span> -->
                 </div>
                 <!-- Type -->
                 <div class="form-group col-12 mt-2">
@@ -30,7 +26,7 @@
                   <label for="type">Type</label>
 
                   <div class="input-group mt-2">
-                    <select class="form-select" formControlName="Type" [(ngModel)]="productView.Type">
+                    <select class="form-select" formControlName="Type" [(ngModel)]="productView.productType">
                       <option *ngFor="let enum of keys()" value="{{enum}}">
                         {{enum}}
                       </option>
@@ -48,7 +44,7 @@
                     <tabset class="member-tabset" #sizingTabs>
                       <tab heading="Universal Sizes">
                         <div class="input-group mt-2">
-                          <select class="form-select" formControlName="Size" [(ngModel)]="productView.Size">
+                          <select class="form-select" formControlName="Size" [(ngModel)]="productView.size">
                             <option value="One Size Fits All">One Size Fits All</option>
                             <option value="XS">XS</option>
                             <option value="S">S</option>
@@ -63,7 +59,7 @@
                       </tab>
                       <tab heading="EU Sizes">
                         <div class="input-group mt-2">
-                          <input type="number" class="form-control" formControlName="Size" [(ngModel)]="productView.Size">
+                          <input type="number" class="form-control" formControlName="Size" [(ngModel)]="productView.size">
                         </div>
                         <!-- <span *ngIf="prodSize.touched" class="error-block">
                           <span *ngIf="!prodSize.value">{{prodSize.value}}Please select a size.</span>
@@ -77,7 +73,7 @@
 
                 <!-- Condition -->
                 <label>Condition of your product:</label>
-                <div class="btn-group col-12 mb-2 mt-2" formControlName="Condition" [(ngModel)]="productView.Condition" btnRadioGroup>
+                <div class="btn-group col-12 mb-2 mt-2" formControlName="Condition" [(ngModel)]="productView.conditionType" btnRadioGroup>
                   <label class="btn btn-outline-primary" btnRadio="NEW" role="button" name="Condition" [ariaSelected]="true">New</label>
                   <label class="btn btn-outline-primary" btnRadio="PRELOVED" role="button" name="Condition">Pre-Loved</label>
                 </div>
@@ -86,7 +82,7 @@
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="year">Year</label> <i class="comment"> (Optional, year of manufacture)</i>
                   <div class="input-group mt-2">
-                    <input type="number" class="form-control" formControlName="Year" [(ngModel)]="productView.Year">
+                    <input type="number" class="form-control" formControlName="Year" [(ngModel)]="productView.year">
                   </div>
                   <!-- <span *ngIf="prodYear.touched" class="error-block">
                     <span *ngIf="prodYear.value <= 1900">Please input a valid year.</span>
@@ -101,7 +97,7 @@
                   <div class="input-group mt-2">
                     <input type="text" class="form-control" formControlName="Description"
                     minlength="10"
-                    [(ngModel)]="productView.Description">
+                    [(ngModel)]="productView.description">
                   </div>
                   <!-- <span *ngIf="!prodDesc.valid && prodDesc.touched" class="error-block">
                     <span *ngIf="prodDesc.errors!['required']">Please type in a description for your product.</span>
@@ -132,7 +128,7 @@
                 <div class="form-group col-12 mb-3 mt-2">
                   <label for="price">Price in Euros </label><i class="comment"> (Starting price for Auctioning, or final price for selling)</i>
                   <div class="input-group mt-2">
-                    <input type="number" class="form-control" formControlName="Price" [(ngModel)]="productView.Price">
+                    <input type="number" class="form-control" formControlName="Price" [(ngModel)]="productView.price">
                     <div class="input-group-text">€</div>
                   </div>
                   <!-- <span *ngIf="prodPrice.touched" class="error-block">

@@ -2,14 +2,14 @@ import { ProductConditionType } from "../product/product-list/ProductConditionTy
 import { ProductType } from "../product/product-list/ProductType";
 
 export interface IProductBase{
-    Id: number;
-    User: string;
-    Title: string;
-    Type: ProductType;
-    Size: string;
-    Price: number;
-    Condition: ProductConditionType;
-    Year?: number;
+    id: number;
+    title: string;
+    productType: ProductType;
+    size: string;
+    price: number;
+    conditionType: ProductConditionType;
+    year?: number;
+    username?: string;
     // City?: string;
-    Image?: string;
+    image?: string;
 }

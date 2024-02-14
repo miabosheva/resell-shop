@@ -23,11 +23,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MatSelectCountryModule } from "@angular-material-extensions/select-country";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { DeleteProductComponent } from './product/delete-product/delete-product.component';
 
 const appRoutes: Routes = [
   {path: "", component: ProductListComponent},
   {path: "my-profile", component: ProductListComponent},
   {path: "add-product", component: AddProductComponent},
+  {path: "delete/:id", component: DeleteProductComponent},
   {path: "product-detail/:id", component: ProductDetailComponent},
   {path: "user/login", component: UserLoginComponent},
   {path: "user/register", component: UserRegisterComponent},
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     NavBarComponent,
     ProductDetailComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,

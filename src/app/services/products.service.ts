@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ProductType } from '../product/product-list/ProductType';
-import { ProductConditionType } from '../product/product-list/ProductConditionType';
 import { IProduct } from '../model/iproduct';
 import { Product } from '../model/product';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router: Router) { }
 
   getAllCities(): Observable<string[]> {
     return this.http.get<string[]>('https://localhost:7232/api/city');
@@ -21,60 +20,24 @@ export class ProductsService {
   getProduct(id: number){
     return this.getAllProducts().pipe(
       map(productsArray => {
-        return productsArray.find(p => p.Id === id);
+        return productsArray.find(p => p.id === id);
       })
     );
   }
 
-  getAllProducts(User?: string): Observable<IProduct[]>{
-    return this.http.get('data/properties.json').pipe(
-        map((data: any) => {
-          const propertiesArray: IProduct[] = [];
-
-          let localProducts = localStorage.getItem('newProduct');
-          if (localProducts) {
-            let localProductsParsed = JSON.parse(localProducts)
-            Object.keys(localProductsParsed).forEach(id => {
-              if (User){
-                if(localProductsParsed.hasOwnProperty(id)) {
-                  localProductsParsed[id].Type = localProductsParsed[id].Type;
-                  localProductsParsed[id].Condition = localProductsParsed[id].Condition;
-                  propertiesArray.push(localProductsParsed[id]);
-                }
-              }
-              else {
-                localProductsParsed[id].Type = localProductsParsed[id].Type;
-                localProductsParsed[id].Condition = localProductsParsed[id].Condition;
-                propertiesArray.push(localProductsParsed[id]);
-              }
-            })
-          }
-
-          Object.keys(data).forEach(id => {
-            if (User){
-              if (data.hasOwnProperty(id) && data[id].User === User) {
-                data[id].Type = ProductType[data[id].Type];
-                data[id].Condition = ProductConditionType[data[id].Condition];
-                propertiesArray.push(data[id]);
-              }
-            }
-            else{
-              data[id].Type = ProductType[data[id].Type];
-              data[id].Condition = ProductConditionType[data[id].Condition];
-              propertiesArray.push(data[id]);
-            }
-          });
-
-          return propertiesArray;
-        })
-    );
+  getAllProducts(username?: string): Observable<IProduct[]>{
+    if(!username){
+      return this.http.get<Product[]>('https://localhost:7232/api/product/list');
+    } else{
+      return this.http.get<Product[]>('https://localhost:7232/api/product/list/' + username);
+    }
   }
 
   addProduct(product: Product){
-    let newProduct = [product];
-    if (localStorage.getItem('newProduct')){
-      newProduct = [product, ...JSON.parse(localStorage.getItem('newProduct') ?? "")];
-    }
-    localStorage.setItem('newProduct', JSON.stringify(newProduct));
+    return this.http.post('https://localhost:7232/api/product', product);
+  }
+
+  deleteProduct(id: number){
+    return this.http.delete('https://localhost:7232/api/product/delete/' + id);
   }
 }

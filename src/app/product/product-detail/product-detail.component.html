@@ -2,22 +2,22 @@
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img *ngIf="product.Image" class="card-img-top" src="assets/images/{{product.Image}}.jpg">
-        <img *ngIf="!product.Image" class="card-img-top" src="assets/images/placeholder.jpg">
+        <img *ngIf="product.image" class="card-img-top" src="assets/images/{{product.image}}.jpg">
+        <img *ngIf="!product.image" class="card-img-top" src="assets/images/placeholder.jpg">
       </div>
       <div class="card-body">
-        <h1 class="card-title">{{product.Title}}</h1>
+        <h1 class="card-title">{{product.title}}</h1>
         <div>
-          <strong>Size:</strong> {{product.Size}}
+          <strong>Size:</strong> {{product.size}}
         </div>
         <div>
-          <strong>Condition:</strong> {{product.Condition}}
+          <strong>Condition:</strong> {{product.conditionType}}
         </div>
       </div>
       <div class="card-footer">
         <div class="btn-group d-flex">
           <button class="btn btn-primary">Add To Favorites</button>
-          <button class="btn btn-success">Buy For <span>{{product.Price}}€</span></button>
+          <button class="btn btn-success">Buy For <span>{{product.price}}€</span></button>
         </div>
       </div>
     </div>
@@ -28,15 +28,15 @@
         <tab heading="Overview">
           <div class="heading">
             <strong>Description:</strong>
-            <p>{{product.Description}}</p>
+            <p>{{product.description}}</p>
           </div>
           <div class="heading">
             <strong>Type:</strong>
-            <p>{{product.Type}}</p>
+            <p>{{product.productType}}</p>
           </div>
           <div class="heading">
             <strong>Year:</strong>
-            <p>{{product.Year}}</p>
+            <p>{{product.year}}</p>
           </div>
           <!-- <div class="heading">
             <strong>City:</strong>

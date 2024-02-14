@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../model/iproduct';
 
 
@@ -10,23 +10,33 @@ import { IProduct } from '../../model/iproduct';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent implements OnInit{
-  User = "user1234"
+  username = localStorage.getItem('username') ?? undefined;
   products: Array<IProduct> = [];
-  
-  constructor(private route: ActivatedRoute, private productService: ProductsService){}
+
+  constructor(private router: Router, private productService: ProductsService){}
 
   ngOnInit(): void {
-    if (this.route.snapshot.url.toString()){
-      this.User = "Mia Bosheva"
+    if(this.router.url == '/my-profile'){
+      this.productService.getAllProducts(this.username).subscribe({
+        next: (data) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    } else {
+      this.productService.getAllProducts().subscribe({
+        next: (data) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
     }
-    this.productService.getAllProducts(this.User).subscribe({
-      next: (data) => {
-        this.products = data;
-        console.log(data);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
+
   }
 }

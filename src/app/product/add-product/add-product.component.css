@@ -29,3 +29,21 @@
     width: 34px;
     height: 19px;
 }
+
+.card{
+  margin: 0px;
+  padding: 0px;
+}
+
+.row{
+  justify-content: center;
+}
+
+h3{
+  padding-top: 4px;
+  padding-left: 3px;
+}
+
+.card-header {
+  background-color: #4f555b !important;
+}
