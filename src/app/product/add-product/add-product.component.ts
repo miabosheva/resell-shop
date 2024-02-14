@@ -95,6 +95,7 @@ export class AddProductComponent implements OnInit {
       this.productService.addProduct(this.product).subscribe(() =>
         {
           this.alertify.success("Product sucessfully published.");
+          this.router.navigate(['/']);
         }, error => {
           console.log(error);
           this.alertify.error(error.error);

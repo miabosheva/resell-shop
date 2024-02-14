@@ -5,6 +5,7 @@ import { UserForRegister } from '../../model/user';
 import * as alertify from 'alertifyjs';
 import { AlertifyService } from '../../services/alertify.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -19,7 +20,8 @@ export class UserRegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private alertify: AlertifyService) {
+              private alertify: AlertifyService,
+              private router: Router) {
     this.registerationForm = this.fb.group({
       userName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -72,11 +74,11 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     this.userSubmitted = true;
     if (this.registerationForm.valid){
-      // this.user = Object.assign({}, this.registerationForm.value);
       this.authService.registerUser(this.userData()).subscribe(() =>
         {
           this.onReset();
-          this.alertify.success('Register is successful.')
+          this.alertify.success('Register is successful.');
+          this.router.navigate(["user/login"]);
         }, error => {
           console.log(error);
           this.alertify.error(error.error);

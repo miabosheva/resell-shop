@@ -24,12 +24,13 @@ export class DeleteProductComponent implements OnInit {
       () => {
         console.log('Product deleted successfully');
         this.alertifly.success("Successfully deleted.")
-        this.router.navigate(['/']);
+        this.router.navigate(['/my-profile']);
       },
       (error) => {
         console.error('Error deleting product:', error);
         this.alertifly.error("There was an error deleting this product.");
         this.router.navigate(['/']);
+        this.router.navigate(['/my-profile']);
       }
     );
   }
