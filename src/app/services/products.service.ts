@@ -38,6 +38,6 @@ export class ProductsService {
   }
 
   deleteProduct(id: number){
-    return this.http.delete('https://localhost:7232/api/product/delete/' + id);
+    return this.http.delete('https://localhost:7232/api/product/' + id);
   }
 }
