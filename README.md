@@ -1,6 +1,6 @@
-# EShop
+# Resell E-Shop
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+This project was made as a part of the final project for the course "Integrated Systems" - FCSE. It uses .NET backend and Angular frontend. 
 
 ## Development server
 
